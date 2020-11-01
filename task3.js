@@ -10,16 +10,3 @@ function inArray(text, array) {
 }
 
 console.log(inArray("foo", ["sjhfnaof", "affooasf", "dfhdfhdfh"]));
-
-// function inArray(text, array) {
-//   var flag = false;
-//   for (var i = 0; i < array.length; i++) {
-//     if (text == array[i]) {
-//       flag = true;
-//       break;
-//     }
-//   }
-//   return flag;
-// }
-
-// console.log(inArray("foo", ["sjhfnaof", "affooasf", "dfhdfhdfh"]));
