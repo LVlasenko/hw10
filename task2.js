@@ -14,17 +14,18 @@
 // второй вариант решения задачи
 function changeStr(str) {
   var array = str.split("_");
-  console.log(array);
+  console.log(str, " = string origin");
+  //console.log(array);
   for (var i = 1; i < array.length; i++) {
     var letter = array[i][0].toUpperCase(); //первую букву начиная со второго элемента массива сделать заглавной
-    console.log(array[i][0]);
+    //console.log(array[i][0]);
 
     for (var j = 1; j < array[i].length; j++) {
       letter += array[i][j]; // перебираем буквы каждого элемента массива и добавляем их к заглавным
-      console.log(letter);
+      //console.log(letter);
     }
     array[i] = letter; //перезаписываем элементи массива с первой заглавной буквой
-    console.log(array[i]);
+    //console.log(array[i]);
   }
   var newStr = array.join("");
   // или через цикл
@@ -34,4 +35,4 @@ function changeStr(str) {
   return newStr;
 }
 
-console.log(changeStr("var_text_hello"));
+console.log(changeStr("var_text_hello"), " = transformed origin string");

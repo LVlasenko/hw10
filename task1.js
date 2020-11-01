@@ -17,35 +17,22 @@ obj = {
   copy: copy,
   clear: clear,
   doFunction: doFunction,
+  target: target,
+  result: "result",
 };
 
-function getStoreProperty() {
-  if (!this.hasOwnProperty("storeProperty")) {
-    this.storeProperty = "result";
-  }
-  return this.storeProperty;
-}
-
-function setStoreProperty(property) {
-  this.storeProperty = property;
-}
-
-var getStorePropertyWithObj = getStoreProperty.bind(obj);
-var setStorePropertyWithObj = setStoreProperty.bind(obj);
-
 function doFunction(func, x, y) {
-  this[getStorePropertyWithObj()];
-  this[getStorePropertyWithObj()] = func(x, y);
+  this[this.result] = func(x, y);
   return this;
 }
 
 function clear() {
-  this[getStorePropertyWithObj()] = 0;
+  this[this.result] = 0;
   return this;
 }
 
 function copy(buffer) {
-  this[buffer] = this[getStorePropertyWithObj()];
+  this[buffer] = this[this.result];
   return this;
 }
 
@@ -57,16 +44,16 @@ function mul(x, y) {
   return x * y;
 }
 
-obj.target = target;
-
 function target(property) {
-  setStorePropertyWithObj(property);
+  this[property] = this[this.result];
+  this.result = property;
   return this;
 }
 
-// console.log(obj.doFunction(sum, 2, 4).doFunction(mul, 6, 3).clear());
-// console.log(obj.doFunction(sum, 2, 4).clear().doFunction(mul, 6, 3));
-// console.log(obj.clear().doFunction(mul, 6, 3).doFunction(sum, 2, 4));
+console.log(obj.doFunction(sum, 2, 4).doFunction(mul, 6, 3).clear());
+console.log(obj.doFunction(sum, 2, 4).clear().doFunction(mul, 6, 3));
+console.log(obj.clear().doFunction(mul, 6, 3).doFunction(sum, 2, 4));
+
 console.log(
   obj
     .doFunction(sum, 2, 4)
